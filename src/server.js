@@ -30,30 +30,44 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Hello world!' });
+// app.get('/', (req, res) => {
+//   res.status(200).json({ message: 'Hello world!' });
+// });
+
+// app.get('/test-error', (req, res) => {
+//   throw new Error('Something went erong');
+// });
+
+// app.get('/health', (req, res) => {
+//   res.status(200).json({ status: 'Ok!' });
+// });
+
+// app.get('/user', (req, res) => {
+//   res.status(200).json([{ id: 1, name: 'Alice' }]);
+// });
+
+// app.get('/users', (req, res) => {
+//   console.log(req.body);
+//   res.status(201).json({ message: 'User created' });
+// });
+
+// app.get('/user/:userId', (req, res) => {
+//   const { userId } = Number(req.params.userId);
+//   res.status(200).json({ id: userId, name: 'Jacob' });
+// });
+
+app.get('/notes', (req, res) => {
+  console.log(req.body);
+  res.status(201).json({ message: 'Retrieved all notes' });
+});
+
+app.get('/notes/:noteId', (req, res) => {
+  const id_param = Number(req.params.noteId);
+  res.status(200).json({ message: `Retrieved note with ID: ${id_param}` });
 });
 
 app.get('/test-error', (req, res) => {
   throw new Error('Something went erong');
-});
-
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'Ok!' });
-});
-
-app.get('/user', (req, res) => {
-  res.status(200).json([{ id: 1, name: 'Alice' }]);
-});
-
-app.get('/users', (req, res) => {
-  console.log(req.body);
-  res.status(201).json({ message: 'User created' });
-});
-
-app.get('/user/:userId', (req, res) => {
-  const { userId } = Number(req.params.userId);
-  res.status(200).json({ id: userId, name: 'Jacob' });
 });
 
 app.use((req, res) => {
