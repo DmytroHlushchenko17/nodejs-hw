@@ -1,32 +1,32 @@
 # Node.js Homework #1 — Express Server
 
-Перша домашня робота з курсу Node.js. Базовий HTTP-сервер на **Express**, побудований з використанням ES-модулів, логування запитів через **Pino** та підтримки CORS.
+First homework assignment from the Node.js course. A basic HTTP server built with **Express**, using ES modules, request logging via **Pino**, and CORS support.
 
 ---
 
-## 🚀 Технології
+## 🚀 Technologies
 
-| Пакет | Призначення |
+| Package | Purpose |
 |---|---|
-| [Express 5](https://expressjs.com/) | HTTP-фреймворк |
+| [Express 5](https://expressjs.com/) | HTTP framework |
 | [cors](https://www.npmjs.com/package/cors) | Cross-Origin Resource Sharing |
-| [pino-http](https://github.com/pinojs/pino-http) | HTTP-логування |
-| [pino-pretty](https://github.com/pinojs/pino-pretty) | Форматування логів у консолі |
-| [dotenv](https://www.npmjs.com/package/dotenv) | Завантаження змінних середовища |
-| [nodemon](https://nodemon.io/) | Авто-перезапуск сервера при розробці |
-| [ESLint](https://eslint.org/) | Статичний аналіз коду |
-| [Prettier](https://prettier.io/) | Форматування коду |
+| [pino-http](https://github.com/pinojs/pino-http) | HTTP logging |
+| [pino-pretty](https://github.com/pinojs/pino-pretty) | Log formatting in the console |
+| [dotenv](https://www.npmjs.com/package/dotenv) | Loading environment variables |
+| [nodemon](https://nodemon.io/) | Auto-restart server during development |
+| [ESLint](https://eslint.org/) | Static code analysis |
+| [Prettier](https://prettier.io/) | Code formatting |
 
 ---
 
-## 📁 Структура проекту
+## 📁 Project Structure
 
 ```
 nodejs-hw/
 ├── src/
-│   └── server.js       # Точка входу — Express-сервер
-├── .env                # Змінні середовища (не додається до git)
-├── .editorconfig       # Налаштування редактора
+│   └── server.js       # Entry point — Express server
+├── .env                # Environment variables (not committed to git)
+├── .editorconfig       # Editor settings
 ├── .gitignore
 ├── .prettierrc
 ├── eslint.config.js
@@ -35,82 +35,82 @@ nodejs-hw/
 
 ---
 
-## ⚙️ Початок роботи
+## ⚙️ Getting Started
 
-### 1. Клонування репозиторію
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/DmytroHlushchenko17/nodejs-hw.git
 cd nodejs-hw
 ```
 
-### 2. Встановлення залежностей
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Налаштування змінних середовища
+### 3. Configure environment variables
 
-Створіть файл `.env` у кореневій директорії:
+Create a `.env` file in the root directory:
 
 ```env
 PORT=3000
 NODE_ENV=development
 ```
 
-### 4. Запуск сервера
+### 4. Start the server
 
-**Режим розробки** (з авто-перезапуском):
+**Development mode** (with auto-restart):
 ```bash
 npm run dev
 ```
 
-**Продакшн режим:**
+**Production mode:**
 ```bash
 npm start
 ```
 
-Сервер запуститься на `http://localhost:3000`
+The server will start at `http://localhost:3000`
 
 ---
 
-## 📡 Маршрути API
+## 📡 API Routes
 
-| Метод | Маршрут | Опис |
+| Method | Route | Description |
 |---|---|---|
-| `GET` | `/notes` | Отримати всі нотатки |
-| `GET` | `/notes/:noteId` | Отримати нотатку за ID |
-| `GET` | `/test-error` | Тест обробки помилок (500) |
-| `*` | `*` | 404 — Маршрут не знайдено |
+| `GET` | `/notes` | Get all notes |
+| `GET` | `/notes/:noteId` | Get a note by ID |
+| `GET` | `/test-error` | Test error handling (500) |
+| `*` | `*` | 404 — Route not found |
 
-### Приклади запитів
+### Request Examples
 
 ```bash
-# Всі нотатки
+# All notes
 curl http://localhost:3000/notes
 
-# Нотатка з ID 5
+# Note with ID 5
 curl http://localhost:3000/notes/5
 
-# Тест помилки
+# Error test
 curl http://localhost:3000/test-error
 ```
 
 ---
 
-## 🛠️ Скрипти
+## 🛠️ Scripts
 
 ```bash
-npm run dev       # Запуск з nodemon (розробка)
-npm start         # Запуск без nodemon (продакшн)
-npm run lint      # Перевірка коду ESLint-ом
-npm run lint:fix  # Автоматичне виправлення ESLint-помилок
-npm run format    # Форматування коду Prettier-ом
+npm run dev       # Start with nodemon (development)
+npm start         # Start without nodemon (production)
+npm run lint      # Check code with ESLint
+npm run lint:fix  # Auto-fix ESLint errors
+npm run format    # Format code with Prettier
 ```
 
 ---
 
-## 📝 Ліцензія
+## 📝 License
 
 ISC © [Dmytro Hlushchenko](mailto:dimalifecell2019@gmail.com)
