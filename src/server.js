@@ -1,33 +1,21 @@
 import express from 'express';
 import cors from 'cors';
-import pino from 'pino-http';
 import 'dotenv/config';
 import { connectMongoDB } from './db/connectMongo.js';
 import { Student } from './models/student.js';
 import dns from 'dns';
+import { errorHandler } from './middleware/errorHandler.js';
+import { notFoundHandler } from './middleware/notFoundHandler.js';
+import { logger } from './middleware/logger.js';
+
 dns.setServers(['1.1.1.1', '8.8.8.8']);
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
+app.use(logger);
 app.use(express.json());
 app.use(cors());
-app.use(
-  pino({
-    level: 'info',
-    transport: {
-      target: 'pino-pretty',
-      options: {
-        colorize: true,
-        translateTime: 'HH:MM:ss',
-        ignore: 'pid,hostname',
-        messageFormat:
-          '{req.method} {req.url} {res.statusCode} - {responseTime}ms',
-        hideObject: true,
-      },
-    },
-  }),
-);
 
 app.use((req, res, next) => {
   console.log(`Time:${new Date().toLocaleString()}`);
@@ -84,18 +72,8 @@ app.get('/test-error', (req, res) => {
   throw new Error('Something went erong');
 });
 
-app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
-});
-
-app.use((err, req, res, next) => {
-  console.error('Error:', err.message);
-  const isProd = process.env.NODE_ENV === 'production';
-
-  res.status(500).json({
-    message: isProd ? 'Internal Server Error' : err.message,
-  });
-});
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 await connectMongoDB();
 
