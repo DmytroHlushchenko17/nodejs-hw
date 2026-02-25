@@ -5,21 +5,21 @@ const studentShema = new Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
     },
     age: {
       type: Number,
-      require: true,
+      required: true,
     },
     gender: {
       type: String,
-      require: true,
+      required: true,
       enum: ['male', 'female', 'other'],
     },
     avgMark: {
       type: Number,
-      require: true,
+      required: true,
     },
     onDuty: {
       type: Boolean,
