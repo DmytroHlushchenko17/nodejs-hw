@@ -4,6 +4,8 @@ import pino from 'pino-http';
 import 'dotenv/config';
 import { connectMongoDB } from './db/connectMongo.js';
 import { Student } from './models/student.js';
+import dns from 'dns';
+dns.setServers(['1.1.1.1', '8.8.8.8']);
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -37,7 +39,7 @@ app.get('/students', async (req, res) => {
   res.status(200).json(students);
 });
 
-app.get('/students/:studentsId', async (req, res) => {
+app.get('/students/:studentId', async (req, res) => {
   const { studentId } = req.params;
   const student = await Student.findById(studentId);
 
@@ -88,7 +90,7 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
-  const isProd = process.env.MONGO_URL === 'production';
+  const isProd = process.env.NODE_ENV === 'production';
 
   res.status(500).json({
     message: isProd ? 'Internal Server Error' : err.message,
