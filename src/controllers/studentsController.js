@@ -7,8 +7,8 @@ export const getStudents = async (req, res) => {
 };
 
 export const getStudentsById = async (req, res) => {
-  const { studentId } = req.params;
-  const student = await Student.findById(studentId);
+  const { studentId: _id } = req.params;
+  const student = await Student.findOne({ _id });
 
   // if (!student) {
   //   return res.status(404).json({ message: 'Student not found' });

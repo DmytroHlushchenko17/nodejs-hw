@@ -4,8 +4,9 @@ import {
   getStudentsById,
 } from '../controllers/studentsController.js';
 
-const router = Router();
-router.get('/students', getStudents);
+const studentsRoutes = Router();
 
-router.get('/students/:studentId', getStudentsById);
-export default router;
+studentsRoutes.get('/', getStudents);
+
+studentsRoutes.get('/:studentId', getStudentsById);
+export default studentsRoutes;
