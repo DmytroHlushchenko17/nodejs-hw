@@ -29,4 +29,13 @@ export const deleteStudent = async (req, res) => {
   res.status(200).json(student);
 };
 
-export const updateStudent = async (req, res) => {};
+export const updateStudent = async (req, res) => {
+  const { studentId: _id } = req.params;
+  const student = await Student.findByIdAndUpdate({ _id }, req.body, {
+    new: true,
+  });
+  if (!student) {
+    throw createHttpError(404, 'Student not found');
+  }
+  res.status(200).json(student);
+};

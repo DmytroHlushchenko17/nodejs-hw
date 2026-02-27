@@ -4,6 +4,7 @@ import {
   deleteStudent,
   getStudents,
   getStudentsById,
+  updateStudent,
 } from '../controllers/studentsController.js';
 
 const studentsRoutes = Router();
@@ -15,5 +16,7 @@ studentsRoutes.get('/:studentId', getStudentsById);
 studentsRoutes.post('/', createStudent);
 
 studentsRoutes.delete('/:studentId', deleteStudent);
+
+studentsRoutes.patch('/:studentId', updateStudent);
 
 export default studentsRoutes;
