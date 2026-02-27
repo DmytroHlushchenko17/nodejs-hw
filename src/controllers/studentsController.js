@@ -9,13 +9,13 @@ export const getStudents = async (req, res) => {
 export const getStudentsById = async (req, res) => {
   const { studentId: _id } = req.params;
   const student = await Student.findOne({ _id });
-
-  // if (!student) {
-  //   return res.status(404).json({ message: 'Student not found' });
-  // }
-
   if (!student) {
     throw createHttpError(404, 'Student not found');
   }
   res.status(200).json(student);
+};
+
+export const createStudent = async (req, res) => {
+  const student = await Student.create(req.body);
+  res.status(201).json(student);
 };
