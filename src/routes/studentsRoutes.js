@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   createStudent,
+  deleteStudent,
   getStudents,
   getStudentsById,
 } from '../controllers/studentsController.js';
@@ -12,5 +13,7 @@ studentsRoutes.get('/', getStudents);
 studentsRoutes.get('/:studentId', getStudentsById);
 
 studentsRoutes.post('/', createStudent);
+
+studentsRoutes.delete('/:studentId', deleteStudent);
 
 export default studentsRoutes;
