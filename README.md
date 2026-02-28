@@ -1,4 +1,4 @@
-# Node.js Homework #1 — Express Server
+# Node.js — Express Server
 
 First homework assignment from the Node.js course. A basic HTTP server built with **Express**, using ES modules, request logging via **Pino**, and CORS support.
 
@@ -6,16 +6,16 @@ First homework assignment from the Node.js course. A basic HTTP server built wit
 
 ## 🚀 Technologies
 
-| Package | Purpose |
-|---|---|
-| [Express 5](https://expressjs.com/) | HTTP framework |
-| [cors](https://www.npmjs.com/package/cors) | Cross-Origin Resource Sharing |
-| [pino-http](https://github.com/pinojs/pino-http) | HTTP logging |
-| [pino-pretty](https://github.com/pinojs/pino-pretty) | Log formatting in the console |
-| [dotenv](https://www.npmjs.com/package/dotenv) | Loading environment variables |
-| [nodemon](https://nodemon.io/) | Auto-restart server during development |
-| [ESLint](https://eslint.org/) | Static code analysis |
-| [Prettier](https://prettier.io/) | Code formatting |
+| Package                                              | Purpose                                |
+| ---------------------------------------------------- | -------------------------------------- |
+| [Express 5](https://expressjs.com/)                  | HTTP framework                         |
+| [cors](https://www.npmjs.com/package/cors)           | Cross-Origin Resource Sharing          |
+| [pino-http](https://github.com/pinojs/pino-http)     | HTTP logging                           |
+| [pino-pretty](https://github.com/pinojs/pino-pretty) | Log formatting in the console          |
+| [dotenv](https://www.npmjs.com/package/dotenv)       | Loading environment variables          |
+| [nodemon](https://nodemon.io/)                       | Auto-restart server during development |
+| [ESLint](https://eslint.org/)                        | Static code analysis                   |
+| [Prettier](https://prettier.io/)                     | Code formatting                        |
 
 ---
 
@@ -52,49 +52,51 @@ npm install
 
 ### 3. Configure environment variables
 
-Create a `.env` file in the root directory:
+Create a `.env.example` file in the root directory:
 
-```env
-PORT=3000
-NODE_ENV=development
+```env.example
+PORT=
+MONGO_URL=
 ```
 
 ### 4. Start the server
 
 **Development mode** (with auto-restart):
+
 ```bash
 npm run dev
 ```
 
 **Production mode:**
+
 ```bash
 npm start
 ```
 
-The server will start at `http://localhost:3000`
+The server will start at `http://localhost:${PORT}`
 
 ---
 
 ## 📡 API Routes
 
-| Method | Route | Description |
-|---|---|---|
-| `GET` | `/notes` | Get all notes |
-| `GET` | `/notes/:noteId` | Get a note by ID |
-| `GET` | `/test-error` | Test error handling (500) |
-| `*` | `*` | 404 — Route not found |
+| Method | Route            | Description               |
+| ------ | ---------------- | ------------------------- |
+| `GET`  | `/notes`         | Get all notes             |
+| `GET`  | `/notes/:noteId` | Get a note by ID          |
+| `GET`  | `/test-error`    | Test error handling (500) |
+| `*`    | `*`              | 404 — Route not found     |
 
 ### Request Examples
 
 ```bash
 # All notes
-curl http://localhost:3000/notes
+curl http://localhost:${PORT}/notes
 
 # Note with ID 5
-curl http://localhost:3000/notes/5
+curl http://localhost:${PORT}/notes/5
 
 # Error test
-curl http://localhost:3000/test-error
+curl http://localhost:${PORT}/test-error
 ```
 
 ---
