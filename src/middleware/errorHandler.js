@@ -1,9 +1,15 @@
-export const errorHandler = (err, req, res, next) => {
-  console.error('Error:', err.message);
+import HttpError from 'http-errors';
+
+export const errorHandler = (error, req, res, next) => {
+  const { status = 500, message } = error;
+
+  if (error instanceof HttpError) {
+    return res.status(status).json({ message });
+  }
 
   const isProd = process.env.NODE_ENV === 'production';
 
   res.status(500).json({
-    message: isProd ? 'Internal Server Error' : err.message,
+    message: isProd ? 'Internal Server Error' : message,
   });
 };
