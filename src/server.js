@@ -6,7 +6,7 @@ import dns from 'dns';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { logger } from './middleware/logger.js';
-import notesRoutes from './routes/notesRoutes.js';
+import notesRouter from './routes/notesRoutes.js';
 
 dns.setServers(['1.1.1.1', '8.8.8.8']);
 
@@ -16,7 +16,7 @@ const PORT = process.env.PORT ?? 3000;
 app.use(cors());
 app.use(express.json());
 app.use(logger);
-app.use('/notes', notesRoutes);
+app.use('/notes', notesRouter);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
