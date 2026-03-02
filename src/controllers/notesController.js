@@ -22,7 +22,7 @@ export const createNote = async (req, res) => {
 
 export const deleteNote = async (req, res) => {
   const { noteId: _id } = req.params;
-  const note = await Note.findByIdAndDelete(_id);
+  const note = await Note.findOneAndDelete({ _id });
   if (!note) {
     throw createHttpError(404, 'Note not found');
   }
@@ -31,7 +31,7 @@ export const deleteNote = async (req, res) => {
 
 export const updateNote = async (req, res) => {
   const { noteId: _id } = req.params;
-  const note = await Note.findByIdAndUpdate(_id, req.body, {
+  const note = await Note.findOneAndUpdate({ _id }, req.body, {
     new: true,
   });
   if (!note) {
