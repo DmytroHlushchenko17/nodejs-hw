@@ -20,8 +20,6 @@ notesRouter.get('/', getAllNotes);
 
 notesRouter.get('/:noteId', celebrate(noteIdParamSchema), getNoteById);
 
-notesRouter.get('/:tag', celebrate(createTagSchema), getAllNotes);
-
 notesRouter.post('/', celebrate(createNotesSchema), createNote);
 
 notesRouter.delete('/:noteId', celebrate(noteIdParamSchema), deleteNote);

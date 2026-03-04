@@ -38,10 +38,6 @@ export const createNotesSchema = {
   }),
 };
 
-export const createTagSchema = {
-  [Segments.PARAMS]: Joi.object({}),
-};
-
 export const noteIdParamSchema = {
   [Segments.PARAMS]: Joi.object({
     noteId: Joi.string().custom(objectIdValidator).required(),
