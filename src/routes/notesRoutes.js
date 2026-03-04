@@ -9,7 +9,6 @@ import {
 import { celebrate } from 'celebrate';
 import {
   createNotesSchema,
-  createTagSchema,
   noteIdParamSchema,
   updateNoteSchema,
 } from '../validations/notesValidation.js';
