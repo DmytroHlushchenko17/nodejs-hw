@@ -7,6 +7,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { logger } from './middleware/logger.js';
 import notesRouter from './routes/notesRoutes.js';
+import { errors } from 'celebrate';
 
 dns.setServers(['1.1.1.1', '8.8.8.8']);
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(logger);
 app.use('/notes', notesRouter);
 app.use(notFoundHandler);
+app.use(errors());
 app.use(errorHandler);
 
 await connectMongoDB();
