@@ -6,18 +6,16 @@ const objectIdValidator = (value, helpers) => {
   return !isValidObjectId(value) ? helpers.message('Invalid id format') : value;
 };
 
-export const createNotesSchema = {
+export const createNoteSchema = {
   [Segments.BODY]: Joi.object({
-    title: Joi.string().min(3).max(30).required().messages({
+    title: Joi.string().min(1).required().messages({
       'string.base': 'Title must be a string',
       'string.min': 'Title should have at least {#limit} characters',
-      'string.max': 'Title should have at most {#limit} characters',
       'any.required': 'Title is required',
     }),
-    content: Joi.string().min(3).max(100).messages({
+    content: Joi.string().messages({
       'string.base': 'Content must be a string',
       'string.min': 'Content should have at least {#limit} characters',
-      'string.max': 'Content should have at most {#limit} characters',
     }),
     tag: Joi.string()
       .valid(...TAGS)
@@ -39,21 +37,19 @@ export const updateNoteSchema = {
     noteId: Joi.string().custom(objectIdValidator).required(),
   }),
   [Segments.BODY]: Joi.object({
-    title: Joi.string().min(3).max(30).required().messages({
+    title: Joi.string().min(1).messages({
       'string.base': 'Title must be a string',
       'string.min': 'Title should have at least {#limit} characters',
-      'string.max': 'Title should have at most {#limit} characters',
-      'any.required': 'Title is required',
     }),
-    content: Joi.string()
-      .min(3)
-      .max(100)
-      .required()
+    content: Joi.string().min(1).messages({
+      'string.base': 'Content must be a string',
+      'string.min': 'Content should have at least {#limit} characters',
+    }),
+    tag: Joi.string()
+      .valid(...TAGS)
       .messages({
-        'string.base': 'Content must be a string',
-        'string.min': 'Content should have at least {#limit} characters',
-        'string.max': 'Content should have at most {#limit} characters',
-        'any.required': 'Content is required',
+        ' any.only':
+          'Tag must be one of: Work, Personal, Meeting, Shopping, Ideas, Travel, Finance, Health, Important, Todo',
       })
       .min(1),
   }),
