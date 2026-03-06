@@ -22,7 +22,7 @@ export const getAllNotes = async (req, res) => {
     notesQuery.countDocuments(),
   ]);
   const totalPages = Math.ceil(totalNotes / perPage);
-  res.json({
+  res.status(200).json({
     page,
     perPage,
     totalNotes,
