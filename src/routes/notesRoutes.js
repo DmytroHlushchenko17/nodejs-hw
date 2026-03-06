@@ -8,7 +8,7 @@ import {
 } from '../controllers/notesController.js';
 import { celebrate } from 'celebrate';
 import {
-  createNotesSchema,
+  createNoteSchema,
   getAllNotesSchema,
   noteIdSchema,
   updateNoteSchema,
@@ -20,7 +20,7 @@ notesRouter.get('/', celebrate(getAllNotesSchema), getAllNotes);
 
 notesRouter.get('/:noteId', celebrate(noteIdSchema), getNoteById);
 
-notesRouter.post('/', celebrate(createNotesSchema), createNote);
+notesRouter.post('/', celebrate(createNoteSchema), createNote);
 
 notesRouter.delete('/:noteId', celebrate(noteIdSchema), deleteNote);
 

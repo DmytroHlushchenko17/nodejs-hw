@@ -16,7 +16,7 @@ const noteSchema = new Schema(
     },
     tag: {
       type: String,
-      enum: [...TAGS],
+      enum: TAGS,
       default: 'Todo',
     },
   },
@@ -29,17 +29,17 @@ const noteSchema = new Schema(
 noteSchema.index({
   title: 'text',
   content: 'text',
-  tag: 'text',
+  tag: TAGS,
 });
 
-export const notesSortFields = [
-  '_id',
-  'title',
-  'content',
-  'tag',
-  'createdAt',
-  'updatedAt',
-];
+// export const notesSortFields = [
+//   '_id',
+//   'title',
+//   'content',
+//   'tag',
+//   'createdAt',
+//   'updatedAt',
+// ];
 
 // noteSchema.post('save', handleSaveError);
 
