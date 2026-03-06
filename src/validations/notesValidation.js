@@ -1,6 +1,5 @@
 import { Joi, Segments } from 'celebrate';
 import { isValidObjectId } from 'mongoose';
-import { notesSortFields } from '../models/note.js';
 import { TAGS } from '../constants/tags.js';
 
 const objectIdValidator = (value, helpers) => {
@@ -21,18 +20,7 @@ export const createNotesSchema = {
       'string.max': 'Content should have at most {#limit} characters',
     }),
     tag: Joi.string()
-      .valid(
-        'Work',
-        'Personal',
-        'Meeting',
-        'Shopping',
-        'Ideas',
-        'Travel',
-        'Finance',
-        'Health',
-        'Important',
-        'Todo',
-      )
+      .valid(...TAGS)
       .messages({
         ' any.only':
           'Tag must be one of: Work, Personal, Meeting, Shopping, Ideas, Travel, Finance, Health, Important, Todo',
@@ -74,12 +62,8 @@ export const updateNoteSchema = {
 export const getAllNotesSchema = {
   [Segments.QUERY]: Joi.object({
     page: Joi.number().integer().min(1).default(1),
-    perPage: Joi.number().integer().min(2).max(20).default(10),
-    sortBy: Joi.string()
-      .valid(...notesSortFields)
-      .default('_id'),
-    sortOrder: Joi.string().valid('asc', 'desc').default('asc'),
+    perPage: Joi.number().integer().min(5).max(20).default(10),
+    tag: Joi.string().valid(...TAGS),
+    search: Joi.string().trim().allow(''),
   }),
-  tag: Joi.string().valid(...TAGS),
-  search: Joi.string().trim().allow(''),
 };
