@@ -20,18 +20,7 @@ export const createNotesSchema = {
       'string.max': 'Content should have at most {#limit} characters',
     }),
     tag: Joi.string()
-      .valid(
-        'Work',
-        'Personal',
-        'Meeting',
-        'Shopping',
-        'Ideas',
-        'Travel',
-        'Finance',
-        'Health',
-        'Important',
-        'Todo',
-      )
+      .valid(...TAGS)
       .messages({
         ' any.only':
           'Tag must be one of: Work, Personal, Meeting, Shopping, Ideas, Travel, Finance, Health, Important, Todo',
