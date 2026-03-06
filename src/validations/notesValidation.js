@@ -50,9 +50,8 @@ export const updateNoteSchema = {
       .messages({
         ' any.only':
           'Tag must be one of: Work, Personal, Meeting, Shopping, Ideas, Travel, Finance, Health, Important, Todo',
-      })
-      .min(1),
-  }),
+      }),
+  }).min(1),
 };
 
 export const getAllNotesSchema = {
