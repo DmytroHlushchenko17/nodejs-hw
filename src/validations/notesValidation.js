@@ -1,5 +1,7 @@
 import { Joi, Segments } from 'celebrate';
 import { isValidObjectId } from 'mongoose';
+import { notesSortFields } from '../models/note.js';
+import { TAGS } from '../constants/tags.js';
 
 const objectIdValidator = (value, helpers) => {
   return !isValidObjectId(value) ? helpers.message('Invalid id format') : value;
@@ -38,7 +40,7 @@ export const createNotesSchema = {
   }),
 };
 
-export const noteIdParamSchema = {
+export const noteIdSchema = {
   [Segments.PARAMS]: Joi.object({
     noteId: Joi.string().custom(objectIdValidator).required(),
   }),
@@ -67,4 +69,17 @@ export const updateNoteSchema = {
       })
       .min(1),
   }),
+};
+
+export const getAllNotesSchema = {
+  [Segments.QUERY]: Joi.object({
+    page: Joi.number().integer().min(1).default(1),
+    perPage: Joi.number().integer().min(2).max(20).default(10),
+    sortBy: Joi.string()
+      .valid(...notesSortFields)
+      .default('_id'),
+    sortOrder: Joi.string().valid('asc', 'desc').default('asc'),
+  }),
+  tag: Joi.string().valid(...TAGS),
+  search: Joi.string().trim().allow(''),
 };
