@@ -36,4 +36,25 @@ const noteSchema = new Schema(
   },
 );
 
+noteSchema.index({
+  title: 'text',
+  content: 'text',
+  tag: 'text',
+});
+
+export const notesSortFields = [
+  '_id',
+  'title',
+  'content',
+  'tag',
+  'createdAt',
+  'updatedAt',
+];
+
+// noteSchema.post('save', handleSaveError);
+
+// noteSchema.pre('findOneAndUpdate', setUpdateRules);
+
+// noteSchema.post('findOneAndUpdate', handleSaveError);
+
 export const Note = model('Note', noteSchema);
