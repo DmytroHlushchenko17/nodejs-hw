@@ -13,14 +13,14 @@ export const createNoteSchema = {
       'string.min': 'Title should have at least {#limit} characters',
       'any.required': 'Title is required',
     }),
-    content: Joi.string().messages({
+    content: Joi.string().allow('').messages({
       'string.base': 'Content must be a string',
       'string.min': 'Content should have at least {#limit} characters',
     }),
     tag: Joi.string()
       .valid(...TAGS)
       .messages({
-        ' any.only':
+        'any.only':
           'Tag must be one of: Work, Personal, Meeting, Shopping, Ideas, Travel, Finance, Health, Important, Todo',
       }),
   }),
