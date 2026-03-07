@@ -41,7 +41,7 @@ export const updateNoteSchema = {
       'string.base': 'Title must be a string',
       'string.min': 'Title should have at least {#limit} characters',
     }),
-    content: Joi.string().min(1).messages({
+    content: Joi.string().messages({
       'string.base': 'Content must be a string',
       'string.min': 'Content should have at least {#limit} characters',
     }),
@@ -50,9 +50,8 @@ export const updateNoteSchema = {
       .messages({
         ' any.only':
           'Tag must be one of: Work, Personal, Meeting, Shopping, Ideas, Travel, Finance, Health, Important, Todo',
-      })
-      .min(1),
-  }),
+      }),
+  }).min(1),
 };
 
 export const getAllNotesSchema = {
