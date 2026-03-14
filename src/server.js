@@ -8,6 +8,7 @@ import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { logger } from './middleware/logger.js';
 import notesRouter from './routes/notesRoutes.js';
 import { errors } from 'celebrate';
+import authRoutes from './routes/authRoutes.js';
 
 // dns.setServers(['1.1.1.1', '8.8.8.8']);
 
@@ -17,6 +18,7 @@ const PORT = process.env.PORT ?? 3000;
 app.use(cors());
 app.use(express.json());
 app.use(logger);
+app.use(authRoutes);
 app.use('/notes', notesRouter);
 app.use(notFoundHandler);
 app.use(errors());
