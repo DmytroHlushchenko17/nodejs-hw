@@ -6,7 +6,7 @@ const userSchema = new Schema(
     email: { type: String, unique: true, required: true, trim: true },
     password: { type: String, required: true },
   },
-  { timestamps: true },
+  { versionKey: false, timestamps: true },
 );
 
 userSchema.pre('save', function () {
