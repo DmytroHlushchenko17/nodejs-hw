@@ -1,7 +1,7 @@
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
-import { registerUserSchema } from '../validations/authValidation';
-import { registerUser } from '../controllers/authController';
+import { registerUserSchema } from '../validations/authValidation.js';
+import { registerUser } from '../controllers/authController.js';
 
 const router = Router();
 
