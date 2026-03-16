@@ -17,7 +17,7 @@ import { authenticate } from '../middleware/authenticate.js';
 
 const notesRouter = Router();
 
-notesRouter.use('notes', authenticate);
+notesRouter.use(authenticate);
 
 notesRouter.get('/', celebrate(getAllNotesSchema), getAllNotes);
 
