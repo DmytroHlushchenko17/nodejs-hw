@@ -96,7 +96,7 @@ export const requestResetEmail = async (req, res) => {
 
   if (!user) {
     return res.status(200).json({
-      massage: 'If this email exists, a reset link has been sent',
+      message: 'If this email exists, a reset link has been sent',
     });
   }
 

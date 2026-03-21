@@ -10,6 +10,15 @@ export const upload = multer({
       'image/png',
       'image/gif',
       'image/webp',
+      'image/svg+xml',
+      'image/bmp',
+      'image/tiff',
+      'image/avif',
+      'image/heic',
+      'image/heif',
+      'image/x-icon',
+      'image/vnd.adobe.photoshop',
+      'image/vnd.microsoft.icon',
     ];
 
     if (allowedTypes.includes(file.mimetype)) {
