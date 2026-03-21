@@ -41,7 +41,7 @@ export const updateNoteSchema = {
       'string.base': 'Title must be a string',
       'string.min': 'Title should have at least {#limit} characters',
     }),
-    content: Joi.string().messages({
+    content: Joi.string().allow('').messages({
       'string.base': 'Content must be a string',
       'string.min': 'Content should have at least {#limit} characters',
     }),
